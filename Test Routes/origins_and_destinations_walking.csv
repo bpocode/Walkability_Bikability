@@ -1,0 +1,28 @@
+route_id,neighborhood,origin,origin_latitude,origin_longitude,destination_name,destination,destination_latitude,destination_longitude,Type
+R001,Airport District,"4299 Poinsettia St, San Luis Obispo, CA 93401",35.245798,-120.637092,SLO County Airport,"975 Airport Dr, San Luis Obispo, CA 93401",35.238287,-120.637968,Walking
+R002,Airport District,"4002 Poinsettia St, San Luis Obispo, CA 93401",35.2451,-120.6376,Rod & Hammer Rock,"855 Aerovista Pl, San Luis Obispo, CA 93401",35.2421,-120.641,Walking
+R003,Airport District,"450 Crestmont Dr, San Luis Obispo, CA 93401",35.22599,-120.630304,Tolosa Winery,"4910 Edna Rd, San Luis Obispo, CA 93401",35.230846,-120.62488,Walking
+R004,Downtown SLO,"1137 Peach St, San Luis Obispo, CA 93401",35.285348,-120.661341,Mission Plaza,"989 Chorro St, San Luis Obispo, CA 93401",35.2805,-120.6637,Walking
+R005,Downtown SLO,"1110 Buchon St, San Luis Obispo, CA 93401",35.2806,-120.6537,Downtown SLO Farmers Market (downtown in general),"Higuera St, San Luis Obispo, CA 93401",35.2793,-120.6633,Walking
+R006,Downtown SLO,"1313 Peach St #2, San Luis Obispo, CA 93401",35.2865,-120.6599,Fremont Theatre,"1035 Monterey St, San Luis Obispo, CA 93401",35.2819,-120.661,Walking
+R007,Foothill,"1111 Foothill Blvd, San Luis Obispo, CA 93405",35.294112,-120.66486,Cal Poly (use Kennedy library),"1 Grand Ave Building 35, San Luis Obispo, CA 93401",35.30194,-120.66382,Walking
+R008,Foothill,"255 Donna Way, San Luis Obispo, CA 93405",35.296568,-120.681846,California Fresh Market,"771 Foothill Blvd, San Luis Obispo, CA 93405",35.29335,-120.67268,Walking
+R009,Foothill,"741 Center St, San Luis Obispo, CA 93405",35.28665,-120.6699,Santa Rosa Park,"1050 Oak St, San Luis Obispo, CA 93405",35.289903,-120.664207,Walking
+R010,Laguna,"1490 Prefumo Canyon Rd, San Luis Obispo, CA 93405",35.263069,-120.699311,Laguna Village Shopping Center,"1328 Madonna Rd, San Luis Obispo, CA 93405",35.2631,-120.6763,Walking
+R011,Laguna,"1531 Gulf St, San Luis Obispo, CA 93405",35.260908,-120.685761,Madonna Plaza Shopping Center,"255 El Mercado, San Luis Obispo, CA 93405",35.2632,-120.677,Walking
+R012,Laguna,"981 Madonna Rd, San Luis Obispo, CA 93405",35.2608,-120.6805,Laguna Lake Park,"504 Madonna Rd, San Luis Obispo, CA 93405",35.264,-120.681,Walking
+R013,LoBro,"838 Tarragon Ln, San Luis Obispo, CA 93401",35.2608,-120.646,SLO Food Co-Op,"2494 Victoria Ave, San Luis Obispo, CA 93401",35.26732,-120.652352,Walking
+R014,LoBro,"3935 Poinsettia St, San Luis Obispo, CA 93401",35.2461,-120.6426,The Pad Climbing San Luis Obispo,"888 Ricardo Ct, San Luis Obispo, CA 93401",35.2575,-120.64178,Walking
+R015,LoBro,"RVs Wash and Wax, 1121 Orcutt Rd Spc 51, San Luis Obispo, CA 93401",35.26,-120.6455,Sinsheimer Park,"900 Southwood Dr, San Luis Obispo, CA 93401",35.266538,-120.645064,Walking
+R016,LoHI,"145 South St, San Luis Obispo, CA 93401",35.268855,-120.66883,High St Deli,"350 High St, San Luis Obispo, CA 93401",35.272278,-120.66445,Walking
+R017,LoHI,"81 Higuera St, San Luis Obispo, CA 93401",35.269,-120.6675,Madonna plaza,"255 El Mercado, San Luis Obispo, CA 93405",35.2632,-120.677,Walking
+R018,LoHI,"440 Corrida Dr, San Luis Obispo, CA 93401",35.26716,-120.6609,South hills open space,"456 Stoneridge Dr, San Luis Obispo, CA 93401",35.2617,-120.6604,Walking
+R019,RR,"1137 Peach St, San Luis Obispo, CA 93401",35.285348,-120.661341,Downtown slo (mission plaza),"989 Chorro St, San Luis Obispo, CA 93401",35.2805,-120.6637,Walking
+R020,RR,"2222 Florence Ave, San Luis Obispo, CA 93401",35.2685,-120.647,Amtrak station,"1011 Railroad Ave, San Luis Obispo, CA 93401",35.27544,-120.65556,Walking
+R021,RR,"2325 Parkland Terrace, San Luis Obispo, CA 93401",35.27446,-120.642441,Sinsheimer Park,"900 Southwood Dr, San Luis Obispo, CA 93401",35.266538,-120.645064,Walking
+R022,SLO South,"3 Los Verdes Dr, San Luis Obispo, CA 93401",35.242424,-120.676674,Slo public market,"3845 S Higuera St, San Luis Obispo, CA 93401",35.2476,-120.6722,Walking
+R023,SLO South,"3175 Camellia Ct, San Luis Obispo, CA 93401",35.257168,-120.66625,South hills open space,"456 Stoneridge Dr, San Luis Obispo, CA 93401",35.2617,-120.6604,Walking
+R024,SLO South,"3576 Empleo St, San Luis Obispo, CA 93401",35.251518,-120.668701,Trader Joes,"3977 S Higuera St, San Luis Obispo, CA 93401",35.2467,-120.672,Walking
+R025,Mojo,"1630 Higuera St, San Luis Obispo, CA 93401",35.2657,-120.6673,Downtown slo,"1135 Chorro St, San Luis Obispo, CA 93401",35.2814,-120.6616,Walking
+R026,Mojo,"190 Henderson Ave, San Luis Obispo, CA 93405",35.2949,-120.6506,Cal Poly (UU),"1 Grand Ave, San Luis Obispo, CA 93407",35.299513,-120.657311,Walking
+R027,Mojo,"1239 Foothill Blvd, San Luis Obispo, CA 93405",35.29467,-120.662544,Santa Rosa Park,"1050 Oak St, San Luis Obispo, CA 93405",35.289903,-120.664207,Walking
