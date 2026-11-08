@@ -1,1 +1,21 @@
+# Local credentials (keep the example shareable)
 .env
+.env.*
+!.env.example
+
+# System and Python/Jupyter files
+.DS_Store
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Generated collection data and map exports
+/Walking Photos/
+/Biking Photos/
+/Walking Points/
+/Biking Points/
+/route_images/
+/walking_routes_map.html
+/biking_routes_map.html

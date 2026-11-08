@@ -49,7 +49,7 @@ regenerate or update them.
 - `get_images(points, pitch=-5, output_folder="route_images", api_key=None)` downloads the images and returns their file paths. It accepts the dictionaries above or ordinary coordinate pairs. Missing imagery is printed and skipped. Other request errors stop the function; images already saved remain on disk.
 
 Install dependencies with `python -m pip install -r requirements.txt`.
-Paste your key after `GOOGLE_MAPS_API_KEY=` in the `.env` file next to `master.py`. This file is automatically loaded and excluded from Git. Use a Google Maps key with Routes API and Street View Static API enabled, or pass `api_key` to the first and third functions. Live calls can incur Google API charges. Importing the file makes no requests.
+Copy `.env.example` to `.env` next to `master.py`, then paste your own key after `GOOGLE_MAPS_API_KEY=`. This file is automatically loaded and excluded from Git. Use a Google Maps key with Routes API and Street View Static API enabled, or pass `api_key` to the first and third functions. Live calls can incur Google API charges. Importing the file makes no requests.
 
 From this folder, use:
 
@@ -104,3 +104,47 @@ classified as missing coverage. Successful points have `status: "saved"`.
 Existing legacy photos are preserved. Their filenames do not contain verified
 capture dates, so they are not automatically renamed or reused by this workflow.
 Run collection to populate the new metadata and filenames (Google API calls).
+
+
+## Collaborating
+
+Use this repository: https://github.com/bpocode/Walkability_Bikability.
+The owner should invite teammates through the repository's Settings → Collaborators.
+Teammates should accept the invitation, clone this repository, and work on a
+separate branch for each task:
+
+```bash
+git clone https://github.com/bpocode/Walkability_Bikability.git
+cd Walkability_Bikability
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pip install jupyterlab
+
+git switch main
+git pull --ff-only
+git switch -c improve-route-maps
+```
+
+On Windows, activate the environment with `.venv\Scripts\activate` instead.
+Run `jupyter lab` to open the notebooks. Saved route visualization needs no API
+key. For live collection, copy `.env.example` to `.env` and supply your own key.
+Local credentials, collected photos, and generated map HTML are excluded from
+Git; collaborators will not receive these files when cloning. Arrange a separate
+shared location for collected photos if the team needs the same dataset.
+
+Before committing, clear notebook outputs using Jupyter's **Clear All Outputs**
+command and save the notebook. Embedded maps and photos can make notebooks very
+large. Coordinate notebook editing so two people do not edit the same notebook
+at once. Keep the route CSVs and saved route JSON files in Git.
+
+Review `git status` and your diff, commit only the files for your task, then push
+your branch and open a pull request into `main`. Have a teammate review it before
+merging. The owner should configure protection for `main` to require pull
+requests and a review, where the repository's GitHub plan supports this.
+
+Run the offline checks before submitting code changes:
+
+```bash
+python -m unittest discover -s tests -v
+```
