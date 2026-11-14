@@ -1,0 +1,765 @@
+{
+  "settings": {
+    "origin": [
+      35.29467,
+      -120.662544
+    ],
+    "destination": [
+      35.289903,
+      -120.664207
+    ],
+    "travel_mode": "WALK",
+    "spacing_feet": 200,
+    "turn_threshold_degrees": 30,
+    "heading_offset_degrees": 25
+  },
+  "route_points": [
+    [
+      35.2946258,
+      -120.66250509999998
+    ],
+    [
+      35.2944609,
+      -120.66278609999999
+    ],
+    [
+      35.294454699999996,
+      -120.66279739999999
+    ],
+    [
+      35.2943754,
+      -120.6629411
+    ],
+    [
+      35.2943576,
+      -120.66296899999999
+    ],
+    [
+      35.294351999999996,
+      -120.6629782
+    ],
+    [
+      35.2943402,
+      -120.66299760000001
+    ],
+    [
+      35.2943304,
+      -120.66300989999999
+    ],
+    [
+      35.294321599999996,
+      -120.6630217
+    ],
+    [
+      35.2943058,
+      -120.6630386
+    ],
+    [
+      35.294366499999995,
+      -120.66309099999998
+    ],
+    [
+      35.2944709,
+      -120.66318109999997
+    ],
+    [
+      35.294557,
+      -120.6632564
+    ],
+    [
+      35.294612199999996,
+      -120.66331699999999
+    ],
+    [
+      35.2946692,
+      -120.663339
+    ],
+    [
+      35.294865,
+      -120.6635095
+    ],
+    [
+      35.294941,
+      -120.66357649999998
+    ],
+    [
+      35.2950099,
+      -120.6636373
+    ],
+    [
+      35.294964,
+      -120.66371439999999
+    ],
+    [
+      35.2949136,
+      -120.66379909999998
+    ],
+    [
+      35.294892,
+      -120.66383529999999
+    ],
+    [
+      35.2949287,
+      -120.66386759999999
+    ],
+    [
+      35.29486,
+      -120.6640082
+    ],
+    [
+      35.2947942,
+      -120.66417169999998
+    ],
+    [
+      35.2947799,
+      -120.6642103
+    ],
+    [
+      35.2947407,
+      -120.66431860000002
+    ],
+    [
+      35.294717,
+      -120.6643832
+    ],
+    [
+      35.2946521,
+      -120.6645608
+    ],
+    [
+      35.294595099999995,
+      -120.66471689999997
+    ],
+    [
+      35.294542,
+      -120.6648698
+    ],
+    [
+      35.2944805,
+      -120.6650319
+    ],
+    [
+      35.294471,
+      -120.66505760000001
+    ],
+    [
+      35.294419,
+      -120.66522110000001
+    ],
+    [
+      35.2943784,
+      -120.6653349
+    ],
+    [
+      35.29425,
+      -120.66569469999997
+    ],
+    [
+      35.2941849,
+      -120.66583800000001
+    ],
+    [
+      35.294140999999996,
+      -120.66595469999999
+    ],
+    [
+      35.2940944,
+      -120.66609600000001
+    ],
+    [
+      35.2940112,
+      -120.6664598
+    ],
+    [
+      35.2939971,
+      -120.66652200000001
+    ],
+    [
+      35.2939649,
+      -120.66671389999999
+    ],
+    [
+      35.2939558,
+      -120.666814
+    ],
+    [
+      35.2939509,
+      -120.6669158
+    ],
+    [
+      35.2939516,
+      -120.6669452
+    ],
+    [
+      35.293953699999996,
+      -120.66702629999999
+    ],
+    [
+      35.2939566,
+      -120.6671312
+    ],
+    [
+      35.2939583,
+      -120.667194
+    ],
+    [
+      35.2939623,
+      -120.6673694
+    ],
+    [
+      35.2939709,
+      -120.6677408
+    ],
+    [
+      35.2938195,
+      -120.6676809
+    ],
+    [
+      35.2935983,
+      -120.6675821
+    ],
+    [
+      35.2934085,
+      -120.6675146
+    ],
+    [
+      35.2932791,
+      -120.6674784
+    ],
+    [
+      35.2932385,
+      -120.6674663
+    ],
+    [
+      35.293064099999995,
+      -120.66741549999999
+    ],
+    [
+      35.2928505,
+      -120.66736189999997
+    ],
+    [
+      35.2924713,
+      -120.6672603
+    ],
+    [
+      35.2923286,
+      -120.66723139999998
+    ],
+    [
+      35.2918957,
+      -120.66710669999999
+    ],
+    [
+      35.291003499999995,
+      -120.66684910000001
+    ],
+    [
+      35.2910064,
+      -120.6668282
+    ],
+    [
+      35.2909761,
+      -120.6668162
+    ],
+    [
+      35.2908334,
+      -120.6667598
+    ],
+    [
+      35.2908195,
+      -120.66678089999999
+    ],
+    [
+      35.290572399999995,
+      -120.66670440000001
+    ],
+    [
+      35.2905216,
+      -120.66668319999998
+    ],
+    [
+      35.290453299999996,
+      -120.66665189999999
+    ],
+    [
+      35.2903919,
+      -120.6666172
+    ],
+    [
+      35.290343799999995,
+      -120.6665864
+    ],
+    [
+      35.2903162,
+      -120.6665678
+    ],
+    [
+      35.289999699999996,
+      -120.66629340000001
+    ],
+    [
+      35.2897758,
+      -120.66616289999999
+    ],
+    [
+      35.2896913,
+      -120.6660504
+    ],
+    [
+      35.2893809,
+      -120.66579149999998
+    ],
+    [
+      35.289148499999996,
+      -120.66559760000001
+    ],
+    [
+      35.2892,
+      -120.6655137
+    ],
+    [
+      35.2892357,
+      -120.66545550000001
+    ],
+    [
+      35.289343699999996,
+      -120.66527930000001
+    ],
+    [
+      35.289387399999995,
+      -120.66520790000001
+    ],
+    [
+      35.289411799999996,
+      -120.66512379999999
+    ],
+    [
+      35.2894201,
+      -120.66501140000001
+    ],
+    [
+      35.2894145,
+      -120.6648864
+    ],
+    [
+      35.28934770000001,
+      -120.6644001
+    ],
+    [
+      35.2893434,
+      -120.664369
+    ],
+    [
+      35.2892741,
+      -120.66386440000001
+    ],
+    [
+      35.2892653,
+      -120.6638174
+    ],
+    [
+      35.2893152,
+      -120.6638102
+    ],
+    [
+      35.289491,
+      -120.66378499999998
+    ],
+    [
+      35.2896737,
+      -120.6637877
+    ],
+    [
+      35.2898535,
+      -120.6637904
+    ],
+    [
+      35.2898583,
+      -120.66379049999999
+    ],
+    [
+      35.289949,
+      -120.66380609999999
+    ]
+  ],
+  "image_points": [
+    {
+      "latitude": 35.2946258,
+      "longitude": -120.66250509999998,
+      "distance_along_route_meters": 0.0,
+      "route_heading": 234.28439747558008,
+      "selection_reason": "origin",
+      "location_index": 0,
+      "camera_heading": 259.28,
+      "elevation_meters": 84.64,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.2943058,
+      "longitude": -120.6630386,
+      "distance_along_route_meters": 60.18,
+      "route_heading": 324.8318799876729,
+      "selection_reason": "turn+interval",
+      "location_index": 1,
+      "camera_heading": 349.83,
+      "elevation_meters": 81.69,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.29476179215061,
+      "longitude": -120.66341962799632,
+      "distance_along_route_meters": 121.92,
+      "route_heading": 324.5975918064359,
+      "selection_reason": "interval",
+      "location_index": 2,
+      "camera_heading": 349.6,
+      "elevation_meters": 82.12,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.2950099,
+      "longitude": -120.6636373,
+      "distance_along_route_meters": 155.85,
+      "route_heading": 233.89286867151114,
+      "selection_reason": "turn",
+      "location_index": 3,
+      "camera_heading": 258.89,
+      "elevation_meters": 81.17,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.294892,
+      "longitude": -120.66383529999999,
+      "distance_along_route_meters": 178.1,
+      "route_heading": 324.30899153067236,
+      "selection_reason": "turn",
+      "location_index": 4,
+      "camera_heading": 349.31,
+      "elevation_meters": 81.26,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.294926943849006,
+      "longitude": -120.66386605439571,
+      "distance_along_route_meters": 182.88,
+      "route_heading": 239.0927476842532,
+      "selection_reason": "interval+turn",
+      "location_index": 5,
+      "camera_heading": 264.09,
+      "elevation_meters": 81.22,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.294686586974784,
+      "longitude": -120.66446642578242,
+      "distance_along_route_meters": 243.84,
+      "route_heading": 245.88087020978128,
+      "selection_reason": "interval",
+      "location_index": 6,
+      "camera_heading": 270.88,
+      "elevation_meters": 80.25,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.294463846216104,
+      "longitude": -120.66508009314747,
+      "distance_along_route_meters": 304.8,
+      "route_heading": 248.71088110529286,
+      "selection_reason": "interval",
+      "location_index": 7,
+      "camera_heading": 273.71,
+      "elevation_meters": 78.95,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.294248624108846,
+      "longitude": -120.66569772865131,
+      "distance_along_route_meters": 365.76,
+      "route_heading": 240.89988692200097,
+      "selection_reason": "interval",
+      "location_index": 8,
+      "camera_heading": 265.9,
+      "elevation_meters": 78.26,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.29404369525435,
+      "longitude": -120.66631771137581,
+      "distance_along_route_meters": 426.72,
+      "route_heading": 254.34732891323836,
+      "selection_reason": "interval",
+      "location_index": 9,
+      "camera_heading": 279.35,
+      "elevation_meters": 77.27,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.293952416414236,
+      "longitude": -120.66697672914026,
+      "distance_along_route_meters": 487.68,
+      "route_heading": 271.8171266619827,
+      "selection_reason": "interval",
+      "location_index": 10,
+      "camera_heading": 296.82,
+      "elevation_meters": 76.1,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.293968753722325,
+      "longitude": -120.6676481107527,
+      "distance_along_route_meters": 548.64,
+      "route_heading": 271.62515812682886,
+      "selection_reason": "interval",
+      "location_index": 11,
+      "camera_heading": 296.63,
+      "elevation_meters": 75.61,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.2939709,
+      "longitude": -120.6677408,
+      "distance_along_route_meters": 557.06,
+      "route_heading": 162.10359408215277,
+      "selection_reason": "turn",
+      "location_index": 12,
+      "camera_heading": 187.1,
+      "elevation_meters": 75.73,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.29352338862144,
+      "longitude": -120.66755545870363,
+      "distance_along_route_meters": 609.6,
+      "route_heading": 163.81342364630655,
+      "selection_reason": "interval",
+      "location_index": 13,
+      "camera_heading": 188.81,
+      "elevation_meters": 75.62,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.29299080232751,
+      "longitude": -120.66739710695109,
+      "distance_along_route_meters": 670.56,
+      "route_heading": 168.4249542571539,
+      "selection_reason": "interval",
+      "location_index": 14,
+      "camera_heading": 193.42,
+      "elevation_meters": 75.5,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.29245467656046,
+      "longitude": -120.66725693337489,
+      "distance_along_route_meters": 731.52,
+      "route_heading": 170.6137642253799,
+      "selection_reason": "interval",
+      "location_index": 15,
+      "camera_heading": 195.61,
+      "elevation_meters": 75.7,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.29191932207251,
+      "longitude": -120.66711350451014,
+      "distance_along_route_meters": 792.48,
+      "route_heading": 166.7690441885544,
+      "selection_reason": "interval",
+      "location_index": 16,
+      "camera_heading": 191.77,
+      "elevation_meters": 75.15,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.2913857109059,
+      "longitude": -120.66695945365318,
+      "distance_along_route_meters": 853.44,
+      "route_heading": 166.73933646377066,
+      "selection_reason": "interval",
+      "location_index": 17,
+      "camera_heading": 191.74,
+      "elevation_meters": 72.82,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.291003499999995,
+      "longitude": -120.66684910000001,
+      "distance_along_route_meters": 897.1,
+      "route_heading": 80.35214173952136,
+      "selection_reason": "turn",
+      "location_index": 18,
+      "camera_heading": 105.35,
+      "elevation_meters": 71.99,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.2910064,
+      "longitude": -120.6668282,
+      "distance_along_route_meters": 899.03,
+      "route_heading": 162.08611431554823,
+      "selection_reason": "turn",
+      "location_index": 19,
+      "camera_heading": 187.09,
+      "elevation_meters": 71.83,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.290874841708025,
+      "longitude": -120.66677617920345,
+      "distance_along_route_meters": 914.4,
+      "route_heading": 162.1201688242886,
+      "selection_reason": "interval",
+      "location_index": 20,
+      "camera_heading": 187.12,
+      "elevation_meters": 72.05,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.2908334,
+      "longitude": -120.6667598,
+      "distance_along_route_meters": 919.24,
+      "route_heading": 231.09349727516243,
+      "selection_reason": "turn",
+      "location_index": 21,
+      "camera_heading": 256.09,
+      "elevation_meters": 72.05,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.2908195,
+      "longitude": -120.66678089999999,
+      "distance_along_route_meters": 921.7,
+      "route_heading": 165.81833022517856,
+      "selection_reason": "turn",
+      "location_index": 22,
+      "camera_heading": 190.82,
+      "elevation_meters": 71.99,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.29036223228973,
+      "longitude": -120.66659820279675,
+      "distance_along_route_meters": 975.36,
+      "route_heading": 152.40564446950043,
+      "selection_reason": "interval",
+      "location_index": 23,
+      "camera_heading": 177.41,
+      "elevation_meters": 70.1,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.289901998901264,
+      "longitude": -120.66623645496479,
+      "distance_along_route_meters": 1036.32,
+      "route_heading": 154.5574356580994,
+      "selection_reason": "interval",
+      "location_index": 24,
+      "camera_heading": 179.56,
+      "elevation_meters": 69.4,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.28945680369585,
+      "longitude": -120.66585481013806,
+      "distance_along_route_meters": 1097.28,
+      "route_heading": 145.75225799948203,
+      "selection_reason": "interval",
+      "location_index": 25,
+      "camera_heading": 170.75,
+      "elevation_meters": 69.92,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.289148499999996,
+      "longitude": -120.66559760000001,
+      "distance_along_route_meters": 1138.76,
+      "route_heading": 53.05643233196133,
+      "selection_reason": "turn",
+      "location_index": 26,
+      "camera_heading": 78.06,
+      "elevation_meters": 69.5,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.28925378330365,
+      "longitude": -120.66542599742498,
+      "distance_along_route_meters": 1158.24,
+      "route_heading": 53.09611968362083,
+      "selection_reason": "interval",
+      "location_index": 27,
+      "camera_heading": 78.1,
+      "elevation_meters": 70.12,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.2894047949233,
+      "longitude": -120.66481574762274,
+      "distance_along_route_meters": 1219.2,
+      "route_heading": 99.55251435065935,
+      "selection_reason": "interval",
+      "location_index": 28,
+      "camera_heading": 124.55,
+      "elevation_meters": 71.22,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.28931379324294,
+      "longitude": -120.66415342179491,
+      "distance_along_route_meters": 1280.16,
+      "route_heading": 99.55063967091826,
+      "selection_reason": "interval",
+      "location_index": 29,
+      "camera_heading": 124.55,
+      "elevation_meters": 71.3,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.2892653,
+      "longitude": -120.6638174,
+      "distance_along_route_meters": 1311.14,
+      "route_heading": 6.717060211397211,
+      "selection_reason": "turn",
+      "location_index": 30,
+      "camera_heading": 31.72,
+      "elevation_meters": 70.85,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.289533389875864,
+      "longitude": -120.66378562645134,
+      "distance_along_route_meters": 1341.12,
+      "route_heading": 359.3088925425745,
+      "selection_reason": "interval",
+      "location_index": 31,
+      "camera_heading": 24.31,
+      "elevation_meters": 72.42,
+      "elevation_resolution_meters": 9.543951988220215
+    },
+    {
+      "latitude": 35.289949,
+      "longitude": -120.66380609999999,
+      "distance_along_route_meters": 1387.44,
+      "route_heading": 352.00850320687664,
+      "selection_reason": "destination",
+      "location_index": 32,
+      "camera_heading": 17.01,
+      "elevation_meters": 72.97,
+      "elevation_resolution_meters": 9.543951988220215
+    }
+  ],
+  "route_id": "R027",
+  "travel_mode": "WALK",
+  "neighborhood": "Mojo",
+  "destination_name": "Santa Rosa Park",
+  "origin": [
+    35.29467,
+    -120.662544
+  ],
+  "destination": [
+    35.289903,
+    -120.664207
+  ],
+  "photo_folder": "Walking Photos",
+  "pitch": -5
+}

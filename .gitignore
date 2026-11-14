@@ -12,8 +12,6 @@ __pycache__/
 venv/
 
 # Generated collection data and map exports
-/Walking Photos/
-/Biking Photos/
 /Walking Points/
 /Biking Points/
 /route_images/
