@@ -14,6 +14,18 @@ from pathlib import Path
 import requests
 from dotenv import load_dotenv
 
+PROJECT_ROOT = Path(__file__).resolve().parent
+
+
+def _resolve_path(path):
+    """Resolve relative paths against the project root when possible."""
+    candidate = Path(path)
+    if candidate.is_absolute():
+        return candidate
+    repo_candidate = (PROJECT_ROOT / candidate).resolve()
+    cwd_candidate = (Path.cwd() / candidate).resolve()
+    return repo_candidate if repo_candidate.exists() or not cwd_candidate.exists() else cwd_candidate
+
 
 def _api_key(api_key):
     load_dotenv(Path(__file__).with_name(".env"))
@@ -281,7 +293,7 @@ def get_images(points, pitch=-5, output_folder="route_images", api_key=None,
     if not points:
         return []
     key = _api_key(api_key)
-    folder = Path(output_folder)
+    folder = _resolve_path(output_folder)
     folder.mkdir(parents=True, exist_ok=True)
     manifest_path = folder / "point_images.json"
     previous = json.loads(manifest_path.read_text()) if manifest_path.exists() else []
@@ -438,7 +450,7 @@ def add_elevations(points, api_key=None):
 
 def read_routes(base="."):
     """Read and validate both CSVs before making API calls."""
-    base = Path(base)
+    base = _resolve_path(base)
     routes = []
     for mode, filename, photo_folder in [
         ("WALK", "origins_and_destinations_walking.csv", "Walking Photos"),
@@ -468,7 +480,7 @@ def read_routes(base="."):
 
 def get_route_data(route, base=".", refresh=False):
     """Get and save a route, its mode-specific interval/turn points, and elevations. Reuse saved data."""
-    folder = Path(base) / route["photo_folder"] / route["route_id"]
+    folder = _resolve_path(base) / route["photo_folder"] / route["route_id"]
     folder.mkdir(parents=True, exist_ok=True)
     json_path = folder / "route_points.json"
     settings = {
@@ -495,7 +507,7 @@ def get_route_data(route, base=".", refresh=False):
 
 def save_route_images(data, pitch=-5, base="."):
     """Save photos, coordinate-to-image CSV, and updated route JSON."""
-    folder = Path(base) / data["photo_folder"] / data["route_id"]
+    folder = _resolve_path(base) / data["photo_folder"] / data["route_id"]
     folder.mkdir(parents=True, exist_ok=True)
     json_path = folder / "route_points.json"
     try:
@@ -528,7 +540,7 @@ def plot_routes(travel_mode, base=".", point_zoom=15):
     import folium
     from branca.element import MacroElement, Template
 
-    base = Path(base)
+    base = _resolve_path(base)
     title = "Walking routes" if travel_mode == "WALK" else "Biking routes"
     map_filename = "walking_routes_map.html" if travel_mode == "WALK" else "biking_routes_map.html"
     photo_folder = "Walking Photos" if travel_mode == "WALK" else "Biking Photos"
