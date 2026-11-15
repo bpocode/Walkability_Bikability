@@ -242,7 +242,11 @@ with current_status:
     st.write("Exploring vision-language models (VLMs) to identify features in street-level photos.")
 with next_milestone:
     st.subheader("Next milestone")
-    st.write("Compare candidate VLMs on a sample of route photos and select one for the project.")
+    st.markdown(
+        "- Compare candidate VLMs on a sample of route photos and select one for the project.\n"
+        "- Test whether computer vision or a VLM can flag photos where the path is blocked "
+        "or obscured, and estimate how much of the path is visible."
+    )
 
 
 if "selected_route" not in st.session_state:
