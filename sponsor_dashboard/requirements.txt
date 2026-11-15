@@ -1,2 +1,3 @@
-streamlit>=1.49,<2
+altair>=5,<7
+streamlit>=1.67,<2
 folium>=0.20,<1

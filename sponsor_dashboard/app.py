@@ -4,14 +4,23 @@ import json
 from html import escape
 from pathlib import Path
 
+import altair as alt
 import folium
 import streamlit as st
+from folium.elements import EventHandler
+from folium.utilities import JsCode
 from streamlit.components.v1 import html
 
 PROJECT = Path(__file__).resolve().parent.parent
 MAP_HEIGHT = 700
 METERS_PER_MILE = 1609.344
 METERS_PER_FOOT = 0.3048
+
+route_map_component = st.components.v2.component(
+    "route_point_map",
+    html=f'<iframe title="Route map" style="display:block;width:100%;height:{MAP_HEIGHT}px;border:0"></iframe>',
+    js=Path(__file__).with_name("route_map.js").read_text(encoding="utf-8"),
+)
 
 
 def load_routes(mode):
@@ -64,7 +73,7 @@ def route_label(name, miles):
     return f"{name} · {miles:.2f} mi"
 
 
-def show_map(routes, labels, selected_route):
+def show_map(routes, labels, selected_route, mode):
     """Draw the coverage for this mode or show photos on a single route."""
     route_map = folium.Map()
     bounds = []
@@ -77,18 +86,32 @@ def show_map(routes, labels, selected_route):
             geometry, color="#285a86", weight=4, tooltip=escape(labels[route_id])
         ).add_to(route_map)
 
-    if selected_route is not None:
-        add_photo_points(route_map, routes[selected_route])
-
     route_map.fit_bounds(bounds)
-    html(route_map.get_root().render(), height=MAP_HEIGHT)
+    if selected_route is None:
+        html(route_map.get_root().render(), height=MAP_HEIGHT)
+        return None
+
+    add_photo_points(route_map, routes[selected_route])
+    result = route_map_component(
+        key=f"map_{mode}_{selected_route}",
+        data={"route": f"{mode}/{selected_route}", "mapHtml": route_map.get_root().render()},
+        height=MAP_HEIGHT,
+        on_point_change=lambda: None,
+    )
+    if result.point is not None:
+        st.session_state.selected_point = result.point
+    return st.session_state.selected_point
 
 
 def add_photo_points(route_map, route):
     """Add numbered points with a popup for each saved photo."""
+    previous_distance = None
     for point in route["image_points"]:
         location = (point["latitude"], point["longitude"])
         label = f"Point {point['location_index'] + 1}"
+        endpoint = point.get("selection_reason")
+        if endpoint in ("origin", "destination"):
+            label += " · Start" if endpoint == "origin" else " · Finish"
         photo = point["photo"]
         if photo:
             encoded = base64.b64encode(photo.read_bytes()).decode("ascii")
@@ -105,18 +128,35 @@ def add_photo_points(route_map, route):
         if elevation is not None:
             content += f"<br>Elevation: {elevation / METERS_PER_FOOT:,.0f} ft"
 
-        folium.CircleMarker(
-            location,
-            radius=6,
-            color="#23754a" if photo else "#666666",
-            fill=True,
-            fill_opacity=0.75,
-            tooltip=label,
-            popup=folium.Popup(content, max_width=400, lazy=True),
-        ).add_to(route_map)
+        distance = point.get("distance_along_route_meters")
+        if distance is not None and previous_distance is not None:
+            content += f"<br>From previous point: {(distance - previous_distance) / METERS_PER_FOOT:,.0f} ft"
+        previous_distance = distance
+
+        popup = folium.Popup(content, max_width=400, lazy=True)
+        if endpoint in ("origin", "destination"):
+            start = endpoint == "origin"
+            marker = folium.Marker(
+                location, tooltip=label, popup=popup,
+                icon=folium.Icon(
+                    color="green" if start else "red",
+                    icon="play" if start else "flag-checkered",
+                    prefix="fa",
+                ),
+            )
+        else:
+            marker = folium.CircleMarker(
+                location, radius=6, color="#23754a" if photo else "#666666",
+                fill=True, fill_opacity=0.75, tooltip=label, popup=popup,
+            )
+        marker.add_to(route_map)
+        marker.add_child(EventHandler("click", JsCode(
+            "function () { window.parent.postMessage("
+            f"{{type: 'route-point', index: {int(point['location_index'])}}}, window.origin); }}"
+        )))
 
 
-def show_elevation_chart(route):
+def show_elevation_chart(route, selected_point):
     """Plot saved elevations against cumulative distance along the route."""
     samples = []
     for point in route["image_points"]:
@@ -124,6 +164,7 @@ def show_elevation_chart(route):
         elevation = point.get("elevation_meters")
         if distance is not None and elevation is not None:
             samples.append({
+                "Point": point["location_index"],
                 "Distance (mi)": distance / METERS_PER_MILE,
                 "Elevation (ft)": elevation / METERS_PER_FOOT,
             })
@@ -133,11 +174,23 @@ def show_elevation_chart(route):
         st.caption("There are too few saved elevation points to plot this route.")
         return
 
-    st.line_chart(samples, x="Distance (mi)", y="Elevation (ft)", height=250)
+    chart = alt.Chart(alt.Data(values=samples)).encode(
+        x=alt.X("Distance (mi):Q"),
+        y=alt.Y("Elevation (ft):Q", scale=alt.Scale(zero=False)),
+        tooltip=["Distance (mi):Q", "Elevation (ft):Q"],
+    )
+    profile = chart.mark_line()
+    if any(sample["Point"] == selected_point for sample in samples):
+        highlight = chart.transform_filter(alt.datum.Point == selected_point).mark_circle(
+            size=110, color="#c2410c", opacity=1
+        )
+        profile = profile + highlight
+    st.altair_chart(profile.properties(height=250))
 
 
 def select_route(route_id=None):
     st.session_state.selected_route = route_id
+    st.session_state.selected_point = None
 
 
 def show_route_table(names, distances, selected_route, height):
@@ -183,13 +236,14 @@ st.title("Walkability & Bikability")
 last_update, current_status, next_milestone = st.columns(3)
 with last_update:
     st.subheader("Last update")
-    st.write("Placeholder: Add the update date and a short summary of what changed.")
+    st.write("Mapped 27 walking routes and 27 biking routes across San Luis Obispo. The dashboard now shows route distances, street-level photos where available, and elevation profiles.")
 with current_status:
     st.subheader("Current status")
-    st.write("Placeholder: Summarize what the team is working on now.")
+    st.write("Exploring vision-language models (VLMs) to identify features in street-level photos.")
 with next_milestone:
     st.subheader("Next milestone")
-    st.write("Placeholder: Describe the next deliverable and its target date.")
+    st.write("Compare candidate VLMs on a sample of route photos and select one for the project.")
+
 
 if "selected_route" not in st.session_state:
     select_route()
@@ -214,16 +268,23 @@ st.subheader("Route map")
 st.caption(
     "Choose a route from the list beside the map to see its photo points, or select "
     "**Show all routes** for the overview. Scroll over the map or use **+** "
-    "and **−** to zoom. Drag to pan. Click a green point to open its photo. "
+    "and **−** to zoom. Drag to pan. Click a point to see its photo and highlight "
+    "its elevation. The green play icon marks the start and the red flag marks the finish. "
     "Gray points have no saved photo."
 )
 map_column, details_column = st.columns([2, 1])
 with map_column:
-    show_map(routes, labels, selected_route)
+    selected_point = show_map(routes, labels, selected_route, mode)
 with details_column:
     with st.container(height=MAP_HEIGHT, border=False):
         st.subheader(f"{mode} routes")
-        list_height = 240 if selected_route is not None else 520
+        list_height = 205 if selected_route is not None else 520
         show_route_table(names, distances, selected_route, list_height)
         if selected_route is not None:
-            show_elevation_chart(routes[selected_route])
+            route = routes[selected_route]
+            settings = route.get("settings", {})
+            spacing = settings.get("spacing_feet")
+            offset = settings.get("heading_offset_degrees")
+            if spacing is not None and offset is not None:
+                st.caption(f"Saved sampling interval: {spacing} ft · Camera offset: {offset:+g}° from route heading")
+            show_elevation_chart(route, selected_point)
