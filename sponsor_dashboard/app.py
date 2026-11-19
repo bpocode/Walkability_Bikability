@@ -8,6 +8,7 @@ import altair as alt
 import folium
 import streamlit as st
 from folium.elements import EventHandler
+from folium.plugins import PolyLineTextPath
 from folium.utilities import JsCode
 from streamlit.components.v1 import html
 
@@ -15,6 +16,19 @@ PROJECT = Path(__file__).resolve().parent.parent
 MAP_HEIGHT = 700
 METERS_PER_MILE = 1609.344
 METERS_PER_FOOT = 0.3048
+
+NEIGHBORHOOD_COLORS = {
+    "Airport District": "salmon",
+    "Downtown SLO": "blue",
+    "Foothill": "cadetblue",
+    "Laguna": "purple",
+    "Laguna Lake": "purple",
+    "LoBro": "darkred",
+    "LoHI": "green",
+    "SLO South": "darkgreen",
+    "Mojo": "orange",
+    "RR": "brown",
+}
 
 route_map_component = st.components.v2.component(
     "route_point_map",
@@ -45,16 +59,13 @@ def load_routes(mode):
     return routes
 
 
-def load_route_names(mode):
-    """Use the neighborhood and destination from the route inventory."""
+def load_route_inventory(mode):
+    """Read route names and neighborhoods from the project inventory."""
     inventory = PROJECT / "Test Routes" / f"origins_and_destinations_{mode.lower()}.csv"
     if not inventory.is_file():
         return {}
     with inventory.open(newline="", encoding="utf-8-sig") as file:
-        return {
-            row["route_id"]: f'{row["neighborhood"]} to {row["destination_name"]}'
-            for row in csv.DictReader(file)
-        }
+        return {row["route_id"]: row for row in csv.DictReader(file)}
 
 
 def route_distance_miles(route):
@@ -73,17 +84,22 @@ def route_label(name, miles):
     return f"{name} · {miles:.2f} mi"
 
 
-def show_map(routes, labels, selected_route, mode):
+def show_map(routes, labels, neighborhoods, selected_route, mode):
     """Draw the coverage for this mode or show photos on a single route."""
     route_map = folium.Map()
+    visible_routes = {selected_route: routes[selected_route]} if selected_route else routes
     bounds = []
-    for route_id, route in routes.items():
-        if selected_route is not None and route_id != selected_route:
-            continue
+    for route_id, route in visible_routes.items():
         geometry = route["route_points"]
         bounds.extend(geometry)
-        folium.PolyLine(
-            geometry, color="#285a86", weight=4, tooltip=escape(labels[route_id])
+        neighborhood = neighborhoods[route_id]
+        color = NEIGHBORHOOD_COLORS.get(neighborhood, "gray")
+        route_line = folium.PolyLine(
+            geometry, color=color, weight=6, opacity=0.9, tooltip=escape(labels[route_id])
+        ).add_to(route_map)
+        PolyLineTextPath(
+            route_line, "➜", repeat=True, offset=8,
+            attributes={"fill": color, "font-size": "20", "pointer-events": "none"},
         ).add_to(route_map)
 
     route_map.fit_bounds(bounds)
@@ -105,6 +121,22 @@ def show_map(routes, labels, selected_route, mode):
 
 def add_photo_points(route_map, route):
     """Add numbered points with a popup for each saved photo."""
+    route_map.add_child(EventHandler("popupopen", JsCode("""
+        function (event) {
+            const popup = event.popup;
+            const element = popup.getElement();
+            if (!element) return;
+            element.querySelectorAll("img").forEach(function (image) {
+                function fitPopup() {
+                    image.style.maxHeight = Math.max(80, event.target.getSize().y - 180) + "px";
+                    image.style.maxWidth = Math.max(100, Math.min(560, event.target.getSize().x - 100)) + "px";
+                    popup.update();
+                }
+                image.addEventListener("load", fitPopup, {once: true});
+                fitPopup();
+            });
+        }
+    """)))
     previous_distance = None
     for point in route["image_points"]:
         location = (point["latitude"], point["longitude"])
@@ -112,18 +144,7 @@ def add_photo_points(route_map, route):
         endpoint = point.get("selection_reason")
         if endpoint in ("origin", "destination"):
             label += " · Start" if endpoint == "origin" else " · Finish"
-        photo = point["photo"]
-        if photo:
-            encoded = base64.b64encode(photo.read_bytes()).decode("ascii")
-            content = (
-                f'<strong>{label}</strong><br>'
-                f'<img src="data:image/jpeg;base64,{encoded}" '
-                f'alt="Street-level photo at {label.lower()}" '
-                'style="width:360px;max-width:65vw;height:auto">'
-            )
-        else:
-            content = f"{label} · No saved photo"
-
+        content = f"<strong>{label}</strong>"
         elevation = point.get("elevation_meters")
         if elevation is not None:
             content += f"<br>Elevation: {elevation / METERS_PER_FOOT:,.0f} ft"
@@ -133,14 +154,30 @@ def add_photo_points(route_map, route):
             content += f"<br>From previous point: {(distance - previous_distance) / METERS_PER_FOOT:,.0f} ft"
         previous_distance = distance
 
-        popup = folium.Popup(content, max_width=400, lazy=True)
+        photo = point["photo"]
+        if photo:
+            encoded = base64.b64encode(photo.read_bytes()).decode("ascii")
+            content += (
+                f'<br><img src="data:image/jpeg;base64,{encoded}" '
+                f'alt="Street-level photo at {label.lower()}" '
+                'style="display:block;width:auto;max-width:min(560px,65vw);'
+                'height:auto;max-height:45vh;object-fit:contain">'
+            )
+        else:
+            content += "<br>No saved photo"
+
+        popup = folium.Popup(
+            content, max_width=600, max_height="60vh", lazy=True,
+            keep_in_view=True, auto_pan_padding_top_left=[20, 20],
+            auto_pan_padding_bottom_right=[20, 20],
+        )
         if endpoint in ("origin", "destination"):
             start = endpoint == "origin"
             marker = folium.Marker(
                 location, tooltip=label, popup=popup,
                 icon=folium.Icon(
-                    color="green" if start else "red",
-                    icon="play" if start else "flag-checkered",
+                    color="red" if start else "black",
+                    icon="home" if start else "flag",
                     prefix="fa",
                 ),
             )
@@ -260,8 +297,16 @@ if not routes:
 
 st.metric("Routes mapped", len(routes))
 
-route_names = load_route_names(mode)
-names = {route_id: route_names.get(route_id, route_id) for route_id in routes}
+inventory = load_route_inventory(mode)
+neighborhoods = {
+    route_id: inventory.get(route_id, {}).get("neighborhood") or "Unknown neighborhood"
+    for route_id in routes
+}
+names = {
+    route_id: f'{neighborhoods[route_id]} to {inventory[route_id]["destination_name"]}'
+    if route_id in inventory else route_id
+    for route_id in routes
+}
 distances = {route_id: route_distance_miles(route) for route_id, route in routes.items()}
 labels = {
     route_id: route_label(names[route_id], distances[route_id])
@@ -273,12 +318,12 @@ st.caption(
     "Choose a route from the list beside the map to see its photo points, or select "
     "**Show all routes** for the overview. Scroll over the map or use **+** "
     "and **−** to zoom. Drag to pan. Click a point to see its photo and highlight "
-    "its elevation. The green play icon marks the start and the red flag marks the finish. "
+    "its elevation. The red home icon marks the start and the black flag marks the finish. "
     "Gray points have no saved photo."
 )
 map_column, details_column = st.columns([2, 1])
 with map_column:
-    selected_point = show_map(routes, labels, selected_route, mode)
+    selected_point = show_map(routes, labels, neighborhoods, selected_route, mode)
 with details_column:
     with st.container(height=MAP_HEIGHT, border=False):
         st.subheader(f"{mode} routes")
